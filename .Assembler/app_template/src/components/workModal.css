@@ -1,0 +1,86 @@
+/* https://www.w3schools.com/howto/howto_css_modal_images.asp */
+
+/* The Modal (background) */
+.Modal {
+    /* display: none; Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+}
+  
+/* Modal Content (Image) */
+.Modal-Content {
+  height: 60%;
+  max-width: 700px;
+}
+
+.Modal-Content-Img {
+  height: 60%;
+  max-width: 700px;
+  pointer-events: none;
+}
+
+/* The Close Button */
+.Close {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.Close:hover,
+.Close:focus {
+  color: #bbb;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Caption of Modal Image (Image Text) - Same Width as the Image */
+.Caption {
+  text-align: center;
+  color: #ccc;
+  font-size: large;
+  justify-self: center;
+  grid-column-start: 2;
+}
+
+/* The Next Button */
+.Next {
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  grid-column-start: 3;
+}
+
+.Prev {
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  grid-column-start: 1;
+}
+
+.Next:hover,
+.Next:focus,
+.Prev:hover,
+.Prev:focus {
+  color: #bbb;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.Modal-Navigator{
+  display: grid;
+  grid-template-columns: 10% 80% 10%;
+  max-width: 700px;
+  margin: auto;
+}

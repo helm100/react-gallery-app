@@ -1,0 +1,102 @@
+body {
+    background-color: rgb(252, 252, 252);
+    font-family: 'Roboto', sans-serif;
+    color: rgb(63, 63, 63);
+}
+
+main {
+    min-height: 50vh;
+}
+
+.Content {
+    margin: 0 30px;
+    text-align: center;
+}
+
+.Nav {
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.Nav > ul {
+    padding: 0;
+    display: flex;
+}
+
+.Nav > ul > li {
+    list-style-type: none;
+    margin: 0 10px;
+}
+
+.NavItem {
+    color: rgb(117, 117, 117);
+    letter-spacing: 1px;
+    text-decoration: none;
+}
+
+.NavItemSelected {
+    color: rgb(63, 63, 63);
+    font-weight: bold;
+    letter-spacing: 3px;
+}
+
+.GalleryPageNav {
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.GalleryPageNav > ul {
+    padding: 0;
+    list-style-type: none;
+    display: flex;
+}
+
+.GalleryPageNav > ul > li {
+    color: rgb(63, 63, 63);
+    margin: 0 10px;
+}
+
+.Thumbnail {
+    width: 300px;
+    height: 300px;
+    margin: 0 10px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.ThumbnailContent {
+    max-width: 300px;
+    max-height: 300px;
+    min-width: 100px;
+    transition: 0.3s;
+    box-shadow: rgb(141, 141, 141) 10px 10px 10px;
+    pointer-events: none;
+}
+
+.Thumbnail:hover {
+    opacity: 0.6;
+}
+
+.GalleryCanvas {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.PlayOverlay {
+    width: 50px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.Footer {
+    font-size: small;
+    letter-spacing: 2px;
+    color: rgb(117, 117, 117);
+}
