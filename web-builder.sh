@@ -1,6 +1,6 @@
 #!/bin/bash
 
-APPDIR=am_web
+APPDIR=waf_web
 CONTDIR=Content
 
 BASEDIR=/

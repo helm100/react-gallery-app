@@ -4,6 +4,7 @@ import os
 import sys
 import csv
 from datetime import datetime
+from CreateIndex import remove_suffix
 
 imgExt = (".png",".jpg",".jpeg",".bmp",".gif",".mp4")
 
@@ -35,7 +36,7 @@ for file in os.listdir(directory):
     for ext in imgExt:
         if filename.endswith(ext):
             id = filename.replace(' ','_')
-            name = filename.removesuffix(ext)
+            name = remove_suffix(filename, ext)
             fileLocation = baseDir + imgDir + "/" + filename
             unixTime = os.path.getmtime(directoryStr + "/" + filename)
             dateTime = datetime.fromtimestamp(unixTime)

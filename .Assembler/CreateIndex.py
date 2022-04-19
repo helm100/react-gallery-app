@@ -1,53 +1,64 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
 import json
 import os
 
-directoryStr = '../Content/'
-directory = os.fsencode(directoryStr)
+def remove_suffix(str, sfx):
+    if (str.endswith(sfx)):
+        return str[0:(len(str) - len(sfx))]
+    return str
 
-output = []
+def main():
+    directoryStr = '../Content/'
+    directory = os.fsencode(directoryStr)
 
-for file in os.listdir(directory):
-    filename = jsName = name = os.fsdecode(file)
-    # print(filename)
-    name = name[2:]
-    jsName = 'v' + jsName
+    output = []
 
-    if (filename.endswith(".md")):
-        output.append({
-            "name": name.removesuffix(".md"),
-            "jsName": jsName.removesuffix(".md"),
-            "type": "text",
-            "import": filename.removesuffix(".md")
-        })
+    for file in os.listdir(directory):
+        filename = jsName = name = os.fsdecode(file)
+        # print(filename)
+        name = name[2:]
+        jsName = 'v' + jsName
 
-    elif (os.path.isdir(directoryStr + "/" + filename) & os.path.isfile(directoryStr + "/" + filename + "/index.csv")):
-        output.append({
-            "name": name,
-            "jsName": jsName,
-            "type": "gallery",
-            "import": filename + ".json"
-        })
+        if (filename.endswith(".md")):
+            output.append({
+                "name": remove_suffix(name, ".md"),
+                "jsName": remove_suffix(jsName, ".md"),
+                "type": "text",
+                "import": remove_suffix(filename, ".md")
+            })
 
-outputSorted = sorted(output, key=lambda p: p['import'])
+        elif (os.path.isdir(directoryStr + "/" + filename) & os.path.isfile(directoryStr + "/" + filename + "/index.csv")):
+            output.append({
+                "name": name,
+                "jsName": jsName,
+                "type": "gallery",
+                "import": filename + ".json"
+            })
 
-jsonStr = json.dumps(outputSorted)
-file = open(directoryStr + "/index.json", "w")
-file.write(jsonStr)
-file.close()
+    outputSorted = sorted(output, key=lambda p: p['import'])
 
-pageIndexJs = ""
-for p in outputSorted:
-    pageIndexJs += "import " + p["jsName"] + " from './" + p["import"] + "';\n"
+    jsonStr = json.dumps(outputSorted)
+    file = open(directoryStr + "/index.json", "w")
+    file.write(jsonStr)
+    file.close()
+    print("Created index.json")
 
-pageIndexJs += "\nconst pageMapper = {"
-for p in outputSorted:
-    pageIndexJs += '"{jsName}": {jsName}, '.format(jsName = p["jsName"])
-pageIndexJs = pageIndexJs[0:-2] + "};\n\n"
+    pageIndexJs = ""
+    for p in outputSorted:
+        pageIndexJs += "import " + p["jsName"] + " from './" + p["import"] + "';\n"
 
-pageIndexJs += "export {pageMapper};"
+    pageIndexJs += "\nconst pageMapper = {"
+    for p in outputSorted:
+        pageIndexJs += '"{jsName}": {jsName}, '.format(jsName = p["jsName"])
+    pageIndexJs = pageIndexJs[0:-2] + "};\n\n"
 
-file = open(directoryStr + "/pageIndex.js", "w")
-file.write(pageIndexJs)
-file.close()
+    pageIndexJs += "export {pageMapper};"
+
+    file = open(directoryStr + "/pageIndex.js", "w")
+    file.write(pageIndexJs)
+    file.close()
+    print("Created pageIndex.js")
+
+if __name__ == "__main__":
+    main()
