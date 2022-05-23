@@ -24,7 +24,7 @@ ReactDOM.render(
             return (
               <Route path={p.name} element={<GalleryPage indexJson={pageMapper[p.jsName]} />}>
                 <Route path=':pageNr' element={<GalleryPage indexJson={pageMapper[p.jsName]} />}>
-                  <Route path=':image' element={<GalleryPage indexJson={pageMapper[p.jsName]} />} />
+                  <Route path=':imageId' element={<GalleryPage indexJson={pageMapper[p.jsName]} />} />
                 </Route>
               </Route>
             );

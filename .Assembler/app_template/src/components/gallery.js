@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { Link, Navigate } from 'react-router-dom';
 import './workModal.css';
 
-export default function Gallery({ indexJson, page, image }) {
+export default function Gallery({ indexJson, page, imageId }) {
     const [showModal, setShowmodal] = useState(false);
     const [modalContent, setModalContent] = useState(indexJson[0]);
 
@@ -18,10 +18,10 @@ export default function Gallery({ indexJson, page, image }) {
     const numberOfPages = Math.ceil(indexJson.length / numberPerPage);    
 
     //page re-routing and initialization
-    if (image && showModal === false) {
-        let imageIndex = indexJson.map((i) => i.name).indexOf(image);
+    if (imageId && showModal === false) {
+        let imageIndex = indexJson.map((i) => i.id).indexOf(imageId);
         if (imageIndex !== -1 && page === Math.floor(imageIndex / numberPerPage)) {
-            image = indexJson[imageIndex];
+            const image = indexJson[imageIndex];
             openModal(image);
         }
         else return <Navigate to="0" />;
@@ -46,7 +46,7 @@ export default function Gallery({ indexJson, page, image }) {
                 {
                     indexJson
                         .slice(numberPerPage * page, numberPerPage * (page + 1))
-                        .map((image) => <Work key={image.name} image={image} page={page} />)
+                        .map((image) => <Work key={image.id} image={image} page={page} />)
                 }
             </div>
             {numberOfPages > 1 ?

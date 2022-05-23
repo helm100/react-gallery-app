@@ -4,7 +4,7 @@ import playBtn from './play.svg'
 
 export default function Work({ image, page }) {
 
-    let link = page + "/" + image.name;
+    let link = page + "/" + image.id;
 
     return (
         <Link to={link}>
@@ -23,7 +23,7 @@ export default function Work({ image, page }) {
                 <br />
                 
             </div>
-            <p>{image.name}</p>
+            <p className='ThumbnailCaption'>{image.name}</p>
         </Link>
     )
 }

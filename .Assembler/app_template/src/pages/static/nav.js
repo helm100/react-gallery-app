@@ -13,7 +13,7 @@ export default function Nav() {
                 <ul>
                     {
                         index.map(p => {
-                            let clsNm = splitLocation[1] == p.name ? "NavItemSelected" : "NavItem";
+                            let clsNm = splitLocation[1] === p.name ? "NavItemSelected" : "NavItem";
                             return <li key={p.name}>
                                 <Link 
                                     to={p.name}
