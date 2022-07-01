@@ -27,3 +27,4 @@ yarn-error.log*
 
 /*/
 !/.Assembler/
+/.Assembler/__pycache__

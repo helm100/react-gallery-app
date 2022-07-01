@@ -7,7 +7,7 @@ import './workModal.css';
 export default function Gallery({ indexJson }) {
     const [showModal, setShowmodal] = useState(false);
     const [modalContent, setModalContent] = useState(indexJson[0]);
-    let { pageNr, image } = useParams();
+    let { pageNr, imageId } = useParams();
 
     const openModal = (img) => {
         setShowmodal(true);
@@ -19,11 +19,11 @@ export default function Gallery({ indexJson }) {
     const numberOfPages = Math.ceil(indexJson.length / numberPerPage);    
 
     //page re-routing and initialization
-    if (image && showModal === false) {
-        let imageIndex = indexJson.map((i) => i.name).indexOf(image);
+    if (imageId && showModal === false) {
+        let imageIndex = indexJson.map((i) => i.id).indexOf(imageId);
         if (imageIndex !== -1 && pageNr === Math.floor(imageIndex / numberPerPage)) {
-            image = indexJson[imageIndex];
-            openModal(image);
+            const imageData = indexJson[imageIndex];
+            openModal(imageData);
         }
         else return <Navigate to="0" />;
     } 
@@ -47,7 +47,7 @@ export default function Gallery({ indexJson }) {
                 {
                     indexJson
                         .slice(numberPerPage * pageNr, numberPerPage * (pageNr + 1))
-                        .map((image) => <Work key={image.name} image={image} page={pageNr} />)
+                        .map((image) => <Work key={image.id} image={image} page={pageNr} />)
                 }
             </div>
             {numberOfPages > 1 ?

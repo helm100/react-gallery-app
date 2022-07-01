@@ -1,11 +1,10 @@
 
-import { Routes, Route, NavLink, Outlet } from 'react-router-dom';
+import { Routes, Route, NavLink } from 'react-router-dom';
 import Gallery from '../../components/gallery';
 
 export default function GalleryPage({ indexJson }) {
 
     const navLinks = [];
-
     navLinks.push(["_", ""]);
     Object.keys(indexJson).forEach(key => {
         if (key !== "_") navLinks.push([key, key]);
@@ -34,8 +33,6 @@ export default function GalleryPage({ indexJson }) {
 
             { navLinks.length > 1 ? NavLinkBar : null }
 
-            {/* <Outlet /> */}
-
             <Routes>
                 {
                     Object.keys(indexJson).map(key => {
@@ -44,7 +41,7 @@ export default function GalleryPage({ indexJson }) {
                             return (
                                 <Route path="" element={<Gallery indexJson={galleryIndex} />}>
                                     <Route path=":pageNr" element={<Gallery indexJson={galleryIndex} />}>
-                                        <Route path={":image"} element={<Gallery indexJson={galleryIndex} />} />
+                                        <Route path={":imageId"} element={<Gallery indexJson={galleryIndex} />} />
                                     </Route>
                                 </Route>
                             )
@@ -58,15 +55,6 @@ export default function GalleryPage({ indexJson }) {
                     })
                 }
             </Routes>
-
-            {/* <Routes>
-                <Route index element={<Gallery indexJson={indexJson} />} />
-                {secondGallery ? <Route path="second/*" element={<GalleryPage indexJson={indexJson} secondGallery={false} />} /> : <></>}
-                <Route path=":pageNr" element={<Gallery indexJson={indexJson} />} >
-                    <Route path={":image"} element={<Gallery indexJson={indexJson} />} />
-                </Route>
-            </Routes> */}
-
         </div>
     )
 }
