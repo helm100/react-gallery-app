@@ -20,11 +20,11 @@ export default function WorkModal({ indexJson, image, set, setShow, numberPerPag
 
     const keyDownHandler = (k) => {
         if (k.code === "ArrowRight" && nextIndex < indexJson.length) {
-            navigate(nextPage + "/" + indexJson[nextIndex].name);
+            navigate("../" + nextPage + "/" + indexJson[nextIndex].name);
             set(indexJson[nextIndex]);
         }
         else if (k.code === "ArrowLeft" && nextIndex > 1) {
-            navigate(prevPage + "/" + indexJson[nextIndex - 2].name);
+            navigate("../" + prevPage + "/" + indexJson[nextIndex - 2].name);
             set(indexJson[nextIndex - 2]);
         }
     }
@@ -47,7 +47,7 @@ export default function WorkModal({ indexJson, image, set, setShow, numberPerPag
                     <img className='Modal-Content-Img' src={image.fileLoc} alt={image.name} />}
 
             <div className='Modal-Navigator'>
-                {showPrev ? <Link className="Prev" to={prevPage + "/" + indexJson[nextIndex - 2].name}>
+                {showPrev ? <Link className="Prev" to={"../" + prevPage + "/" + indexJson[nextIndex - 2].name}>
                     <span onClick={() => set(indexJson[nextIndex - 2])} >&lt;</span>
                 </Link> : null}
                 <p className='Caption'>
@@ -55,7 +55,7 @@ export default function WorkModal({ indexJson, image, set, setShow, numberPerPag
                     {image.description ? <>{image.description} <br/></> : <></>}
                     {image.month}-{image.year}
                 </p>
-                {showNext ? <Link className="Next" to={nextPage + "/" + indexJson[nextIndex].name}>
+                {showNext ? <Link className="Next" to={"../" + nextPage + "/" + indexJson[nextIndex].name}>
                     <span onClick={() => set(indexJson[nextIndex])} >&gt;</span>
                 </Link> : null}
             </div>

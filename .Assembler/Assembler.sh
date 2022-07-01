@@ -25,10 +25,11 @@ for FILE in $CONTDIR/*; do
     BASENAME=${FILENAME%.md}
 
     if [ -d "$FILE" ] && [ -f "$FILE/index.csv" ]; then
+        shopt -s globstar
         python3 JsonFromCsv.py $FILENAME $CONTDIR
         mv $CONTDIR/*.json $APPDIR/src/pages/
         cp -r $FILE $APPDIR/public/
-        rm $APPDIR/public/$FILENAME/*.csv
+        rm $APPDIR/public/$FILENAME/**/*.csv
     
     elif [[ $FILE == *.md ]]; then        
         cat <<EOM >$CONTDIR/$BASENAME.js

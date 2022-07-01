@@ -8,10 +8,10 @@ from CreateIndex import remove_suffix
 
 imgExt = (".png",".jpg",".jpeg",".bmp",".gif",".mp4")
 
-contDir = sys.argv[1]
-imgDir = sys.argv[2]
-baseDir = sys.argv[3]
-directoryStr = contDir + '/' + imgDir
+directoryStr = sys.argv[1]
+contDir = directoryStr.split('/')[0]
+imgDir = '/'.join(directoryStr.split('/')[1:])
+baseDir = sys.argv[2]
 directory = os.fsencode(directoryStr)
 
 fieldnames = ['id','enabled','name','fileLoc','location','year','month','description']

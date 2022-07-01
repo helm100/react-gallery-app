@@ -1,5 +1,5 @@
 import index from "../index.json"
-import { Outlet, Link, useLocation } from "react-router-dom";
+import { Outlet, NavLink, useLocation } from "react-router-dom";
 
 export default function Nav() {
     const { pathname } = useLocation();
@@ -13,14 +13,13 @@ export default function Nav() {
                 <ul>
                     {
                         index.map(p => {
-                            let clsNm = splitLocation[1] == p.name ? "NavItemSelected" : "NavItem";
                             return <li key={p.name}>
-                                <Link 
-                                    to={p.name}
-                                    className={clsNm}
-                                >
-                                    {p.name}
-                                </Link></li>;
+                            <NavLink 
+                                to={p.name}
+                                className={({isActive}) => isActive ? "NavItemSelected" : "NavItem"}
+                            >
+                                {p.name}
+                            </NavLink></li>;
                         })
                     }
                 </ul>

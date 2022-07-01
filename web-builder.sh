@@ -19,10 +19,11 @@ while [ $input != "exit" ]; do
     case $input in
 
         "index")
-            for DIR in $CONTDIR/*; do
+            shopt -s globstar
+            for DIR in $CONTDIR/**/*; do
                 # if [ -d $DIR ] && [ ! -f $DIR/index.csv ]; then
                 if [ -d $DIR ] ; then
-                    python3 .Assembler/CsvFromFolder.py $CONTDIR "$(basename $DIR)" $BASEDIR
+                    python3 .Assembler/CsvFromFolder.py "$DIR" $BASEDIR
                 fi
             done
             echo "Done initializing."
@@ -30,12 +31,13 @@ while [ $input != "exit" ]; do
             ;;
 
         "indexreset")
-            for DIR in $CONTDIR/*; do
+            shopt -s globstar
+            for DIR in $CONTDIR/**/*; do
                 if [ -d $DIR ]; then
                     if [ -f $DIR/index.csv ]; then
                         rm $DIR/index.csv
                     fi
-                    python3 .Assembler/CsvFromFolder.py $CONTDIR "$(basename $DIR)" $BASEDIR
+                    python3 .Assembler/CsvFromFolder.py "$DIR" $BASEDIR
                 fi
             done
             echo "Done initializing."

@@ -13,6 +13,13 @@ main {
     text-align: center;
 }
 
+.NavSmall {
+    padding: 0;
+    height: 15px;
+    display: flex;
+    justify-content: center;
+}
+
 .Nav {
     padding: 10px;
     display: flex;

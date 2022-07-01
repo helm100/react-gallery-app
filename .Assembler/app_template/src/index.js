@@ -22,11 +22,7 @@ ReactDOM.render(
           }
           else if (p.type === "gallery") {
             return (
-              <Route path={p.name} element={<GalleryPage indexJson={pageMapper[p.jsName]} />}>
-                <Route path=':pageNr' element={<GalleryPage indexJson={pageMapper[p.jsName]} />}>
-                  <Route path=':image' element={<GalleryPage indexJson={pageMapper[p.jsName]} />} />
-                </Route>
-              </Route>
+              <Route path={p.name + "/*"} element={<GalleryPage indexJson={pageMapper[p.jsName]} secondGallery={true} />} />
             );
           }
           else return <></>
@@ -34,7 +30,7 @@ ReactDOM.render(
         <Route path='*' element={<PageNotFound />} />
       </Route>
     </Routes>
-    <footer className='Footer'>&copy; Alexa Meyerman {date.getMonth()+1}-{date.getFullYear()}</footer>
+    <footer className='Footer'>&copy; helm100 {date.getMonth()+1}-{date.getFullYear()}</footer>
   </BrowserRouter>,
   document.getElementById('root')
 );
