@@ -1,4 +1,5 @@
 #!/bin/bash
+cd -- "$(dirname "$BASH_SOURCE")"
 
 APPDIR=waf_web
 CONTDIR=Content

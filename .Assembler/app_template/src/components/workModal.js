@@ -53,7 +53,7 @@ export default function WorkModal({ indexJson, image, set, setShow, numberPerPag
                 <p className='Caption'>
                     {image.name}<br/>
                     {image.description ? <>{image.description} <br/></> : <></>}
-                    {image.month}-{image.year}
+                    {image.month ? image.month + '-' : ''}{image.year}
                 </p>
                 {showNext ? <Link className="Next" to={"../" + nextPage + "/" + indexJson[nextIndex].name}>
                     <span onClick={() => set(indexJson[nextIndex])} >&gt;</span>
